@@ -11,23 +11,24 @@ export default function DoctorDashboard() {
 
 //api/doctor/profile
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const baseURL = "https://schedula-20l9.onrender.com" || "http://localhost:5000";
-        await axios.get(`${baseURL}/api/doctor/profile`, {
-                  headers: { Authorization: `Bearer ${token}` }
-            });
+useEffect(() => {
+  const fetchProfile = async () => {
+    try {
+      const baseURL = "https://schedula-20l9.onrender.com"; // or localhost for dev
+      const { data } = await axios.get(`${baseURL}/api/doctor/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
 
-        setDoctor(data);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setLoading(false);
-      }
-    };
-    fetchProfile();
-  }, []);
+      setDoctor(data);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
+  };
+  fetchProfile();
+}, []);
+
 
   if (loading) return <div className="text-center py-10">Loading...</div>;
   if (!doctor) return <div className="text-center py-10">No profile data found.</div>;
