@@ -8,9 +8,12 @@ export default function AllDoctors() {
     const fetchDoctors = async () => {
       const token = localStorage.getItem("token");
       try {
-        const { data } = await axios.get("http://localhost:5000/api/doctor/all", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const baseURL = "https://schedula-20l9.onrender.com" || "http://localhost:5000";
+
+          await axios.get(`${baseURL}/api/doctor/all`, {
+                  headers: { Authorization: `Bearer ${token}` }
+            });
+
         setDoctors(data);
       } catch (err) {
         console.error("Failed to fetch doctors", err);

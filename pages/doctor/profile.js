@@ -165,6 +165,9 @@ export default function DoctorProfile() {
   const token = typeof window !== 'undefined' ? localStorage.getItem("token") : null;
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [editable, setEditable] = useState(false);
+    const BASE_URL = "https://schedula-20l9.onrender.com" || "http://localhost:5000/api";
+
+    
 
     
 
@@ -172,7 +175,7 @@ export default function DoctorProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/doctor/profile", {
+        const { data } = await axios.get(`${BASE_URL}api/doctor/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setDoctor(data);
@@ -234,7 +237,7 @@ export default function DoctorProfile() {
 };
 
      try {
-    await axios.put("http://localhost:5000/api/doctor/profile", updatedDoctor, {
+    await axios.put(`${BASE_URL}/api/doctor/profile`, updatedDoctor, {
       headers: { Authorization: `Bearer ${token}` }
     });
     alert("Profile updated successfully");
@@ -291,7 +294,7 @@ export default function DoctorProfile() {
     formData.append('image', file);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/doctor/upload-photo', formData, {
+      const res = await axios.post(`${BASE_URL}/api/doctor/upload-photo`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
