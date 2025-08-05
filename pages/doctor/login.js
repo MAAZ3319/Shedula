@@ -29,7 +29,7 @@ export default function DoctorAuthPage() {
     setError("");
 
     const endpoint = isLogin ? "login" : "signup";
-    const BASE_URL = "https://schedula-20l9.onrender.com" || "http://localhost:5000/api";
+    const BASE_URL =  "http://localhost:5000/api";
     const url = `${BASE_URL}/auth/${endpoint}`;
 
 

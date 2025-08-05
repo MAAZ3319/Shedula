@@ -165,7 +165,8 @@ export default function DoctorProfile() {
   const token = typeof window !== 'undefined' ? localStorage.getItem("token") : null;
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [editable, setEditable] = useState(false);
-    const BASE_URL = "https://schedula-20l9.onrender.com" || "http://localhost:5000/api";
+   const BASE_URL = process.env.NODE_ENV === "production"? "https://schedula-20l9.onrender.com": "http://localhost:5000";
+
 
     
 
@@ -175,9 +176,10 @@ export default function DoctorProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data } = await axios.get(`${BASE_URL}api/doctor/profile`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const { data } = await axios.get(`${BASE_URL}/api/doctor/profile`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
+
         setDoctor(data);
         setLoading(false);
       } catch (err) {
