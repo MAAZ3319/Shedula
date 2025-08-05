@@ -9,14 +9,15 @@ export default function DoctorDashboard() {
   const [activeTab, setActiveTab] = useState("requests");
   // const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-
+//api/doctor/profile
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/doctor/profile", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const baseURL = "https://schedula-20l9.onrender.com" || "http://localhost:5000";
+        await axios.get(`${baseURL}/api/doctor/profile`, {
+                  headers: { Authorization: `Bearer ${token}` }
+            });
 
         setDoctor(data);
         setLoading(false);
