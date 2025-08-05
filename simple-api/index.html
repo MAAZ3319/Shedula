@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api</title>
+</head>
+<body>
+    <h1>form submission</h1>
+    <form id="userForm">
+        <input type="text" id="nameInput" placeholder="Entername" required />
+        <button type="submit">Submit</button>
+        
+    </form>
+    <p id="response"></p>
+    <h1>user list</h1>
+    <ul id="userList"></ul>
+    <ul id="age"></ul>
+
+
+    <script>
+        const form = document.getElementById('userForm');
+        const responseE1 = document.getElementById('response');
+        const userList = document.getElementById('userList');
+        const age = document.getElementById('age');
+
+        form.addEventListener('submit',async(e)=>{
+            e.preventDefault();
+
+            const name = document.getElementById('nameInput').value;
+
+            const res = await fetch('http://localhost:3000/user',{
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body:JSON.stringify({name})
+            });
+            const data = await res.json();
+            responseE1.textContent = data.message || 'something went wrong';
+
+            form.reset();
+            fetchUsers();
+        });
+   form.addEventListener('submit',async(e)=>{
+            e.preventDefault();
+
+            const name = document.getElementById('nameInput').value;
+
+            const res = await fetch('http://localhost:3000/user',{
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body:JSON.stringify({name})
+            });
+            const data = await res.json();
+            responseE1.textContent = data.message || 'something went wrong';
+
+            form.reset();
+            fetchUsers();
+        });
+
+        async function fetchUsers(){
+
+            const res = await fetch('http://localhost:3000/age');
+            const data = await res.json();
+
+            age.innerHTML = '';
+            data.users.forEach(num=>{
+                const li = document.createElement('li');
+                li.textContent = num;
+                age.appendChild(li);
+            });
+
+
+        }
+        fetchUsers();
+
+    </script>
+
+</body>
+</html>

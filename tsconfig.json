@@ -1,0 +1,61 @@
+// {
+//   "compilerOptions": {
+//     "target": "esnext",
+//     "module": "esnext",
+//     "jsx": "preserve", // enables JSX for React
+//     "allowJs": true, // allows .js files
+//     "checkJs": false, // disables type checking for .js
+//     "strict": true,
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "skipLibCheck": true,
+//     "lib": [
+//       "dom",
+//       "dom.iterable",
+//       "esnext"
+//     ],
+//     "noEmit": true,
+//     "incremental": true,
+//     "resolveJsonModule": true,
+//     "isolatedModules": true
+//   },
+//   "include": [
+//     "pages/components",
+//     "src"
+//   ],
+//   "exclude": [
+//     "node_modules"
+//   ]
+// }
+
+
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true
+  },
+  "include": [
+    "pages",
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
